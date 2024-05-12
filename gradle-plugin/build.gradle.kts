@@ -12,6 +12,7 @@ plugins {
 }
 
 group = GROUP
+
 version = VERSION_NAME
 
 dependencies {
@@ -56,7 +57,8 @@ val generateVersionClassTask =
             object PluginConfig {
                 const val VERSION = "$version"
             }
-            """.trimIndent())
+            """
+                    .trimIndent())
         }
     }
 
