@@ -12,7 +12,7 @@ Read [contribution guidelines](CONTRIBUTING.md) for more information regarding c
 ## 💬 Discuss?
 
 Have any questions, doubts or want to present your opinions, views? You're always welcome. You
-can [start discussions](https://github.com/PatilShreyas/compose-report-to-html/discussions).
+can [start discussions](https://github.com/PatilShreyas/bytemask/discussions).
 
 ## License
 
