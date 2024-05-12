@@ -17,21 +17,10 @@ jobs:
         with:
           java-version: 17
 
-      - name: Cache Gradle and wrapper
-        uses: actions/cache@v2
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v2
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Grant Permission to Execute
-        run: chmod +x gradlew
-
-      - name: 🏗 Build with Gradle 🛠️
-        run: ./gradlew build --stacktrace
+          arguments: build
 
       - name: Publish Library on Maven Central
         run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
