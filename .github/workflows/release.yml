@@ -17,6 +17,9 @@ jobs:
         with:
           java-version: 17
 
+      - name: Grant Permission to Execute
+        run: chmod +x gradlew
+
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
