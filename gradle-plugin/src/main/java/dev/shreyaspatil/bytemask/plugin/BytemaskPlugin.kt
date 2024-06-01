@@ -113,7 +113,7 @@ class BytemaskPlugin : Plugin<Project> {
                 getAppSigningKeyForVariant(project, keySource, variant)
             }
             is KeySource.Key ->
-                Sha256DigestableKey(keySource.encryptionKey.removeSpecialChars().uppercase())
+                Sha256DigestableKey(keySource.encryptionKey)
             else ->
                 getAppSigningKeyForVariant(project, KeySource.SigningConfig(variant.name), variant)
         }
