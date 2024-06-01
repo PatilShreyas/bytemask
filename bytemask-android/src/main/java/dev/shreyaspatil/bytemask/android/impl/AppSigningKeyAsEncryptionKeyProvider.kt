@@ -31,19 +31,17 @@ import java.security.MessageDigest
  *
  * @property context The application context.
  */
-internal class AndroidAppSigningSha256AsEncryptionKeyProvider(
-    private val context: Context
-) : EncryptionKeyProvider {
+internal class AppSigningKeyAsEncryptionKeyProvider(private val context: Context) :
+    EncryptionKeyProvider {
 
     private val sha256 =
         Sha256DigestableKey(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                getSha256SignatureApi28Impl()
-            } else {
-                getSha256SignaturePreApi28Impl()
-            }
-                .uppercase()
-        )
+                    getSha256SignatureApi28Impl()
+                } else {
+                    getSha256SignaturePreApi28Impl()
+                }
+                .uppercase())
 
     /**
      * Returns the SHA-256 digest of the app's signing key.
@@ -67,8 +65,7 @@ internal class AndroidAppSigningSha256AsEncryptionKeyProvider(
     private fun getSha256SignaturePreApi28Impl(): String {
         val packageInfo =
             context.packageManager.getPackageInfo(
-                context.packageName, PackageManager.GET_SIGNATURES
-            )
+                context.packageName, PackageManager.GET_SIGNATURES)
         val signatures = packageInfo.signatures
         return retrieveSha256(signatures)
     }
@@ -84,8 +81,7 @@ internal class AndroidAppSigningSha256AsEncryptionKeyProvider(
     private fun getSha256SignatureApi28Impl(): String {
         val packageInfo =
             context.packageManager.getPackageInfo(
-                context.packageName, PackageManager.GET_SIGNING_CERTIFICATES
-            )
+                context.packageName, PackageManager.GET_SIGNING_CERTIFICATES)
         val signatures = packageInfo.signingInfo.apkContentsSigners
         return retrieveSha256(signatures)
     }

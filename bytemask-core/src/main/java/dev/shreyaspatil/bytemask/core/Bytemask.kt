@@ -63,8 +63,8 @@ class Bytemask private constructor(private val appSignatureProvider: EncryptionK
         /**
          * Initializes the ByteMask.
          *
-         * @param signatureProvider An instance of [EncryptionKeyProvider] used to get the key
-         *   for encryption and decryption.
+         * @param signatureProvider An instance of [EncryptionKeyProvider] used to get the key for
+         *   encryption and decryption.
          */
         fun init(signatureProvider: EncryptionKeyProvider) {
             if (INSTANCE != null) return
