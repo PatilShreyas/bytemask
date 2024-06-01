@@ -23,11 +23,11 @@ import dev.shreyaspatil.bytemask.core.encryption.encrypt
 
 /**
  * ByteMask is a class that provides functionality for masking and unmasking strings. It uses an
- * [AppSigningKeyInfoProvider] to get the key for encryption and decryption.
+ * [EncryptionKeyProvider] to get the key for encryption and decryption.
  *
  * @property appSignatureProvider used to get the key for encryption and decryption.
  */
-class Bytemask private constructor(private val appSignatureProvider: AppSigningKeyInfoProvider) {
+class Bytemask private constructor(private val appSignatureProvider: EncryptionKeyProvider) {
 
     /**
      * Masks a string by encrypting it.
@@ -39,7 +39,7 @@ class Bytemask private constructor(private val appSignatureProvider: AppSigningK
     fun mask(encryptionSpec: EncryptionSpec, value: String): String {
         return value
             .asPlainValue()
-            .encrypt(detail = encryptionSpec, key = appSignatureProvider.getSha256())
+            .encrypt(detail = encryptionSpec, key = appSignatureProvider.get())
             .value
     }
 
@@ -53,7 +53,7 @@ class Bytemask private constructor(private val appSignatureProvider: AppSigningK
     fun unmask(encryptionSpec: EncryptionSpec, value: String): String {
         return value
             .asEncryptedValue()
-            .decrypt(detail = encryptionSpec, key = appSignatureProvider.getSha256())
+            .decrypt(detail = encryptionSpec, key = appSignatureProvider.get())
             .value
     }
 
@@ -63,10 +63,10 @@ class Bytemask private constructor(private val appSignatureProvider: AppSigningK
         /**
          * Initializes the ByteMask.
          *
-         * @param signatureProvider An instance of [AppSigningKeyInfoProvider] used to get the key
+         * @param signatureProvider An instance of [EncryptionKeyProvider] used to get the key
          *   for encryption and decryption.
          */
-        fun init(signatureProvider: AppSigningKeyInfoProvider) {
+        fun init(signatureProvider: EncryptionKeyProvider) {
             if (INSTANCE != null) return
 
             synchronized(this) {

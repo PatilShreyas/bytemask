@@ -16,7 +16,7 @@
 package dev.shreyaspatil.bytemask.android
 
 import android.content.Context
-import dev.shreyaspatil.bytemask.android.impl.AndroidAppSigningKeyInfoProvider
+import dev.shreyaspatil.bytemask.android.impl.AndroidAppSigningSha256AsEncryptionKeyProvider
 import dev.shreyaspatil.bytemask.core.Bytemask
 
 /** A helper class for initializing Bytemask in android environment */
@@ -24,6 +24,6 @@ object AndroidBytemask {
     /** Initializes Bytemask */
     @JvmStatic
     fun init(context: Context) {
-        Bytemask.init(AndroidAppSigningKeyInfoProvider(context))
+        Bytemask.init(AndroidAppSigningSha256AsEncryptionKeyProvider(context))
     }
 }

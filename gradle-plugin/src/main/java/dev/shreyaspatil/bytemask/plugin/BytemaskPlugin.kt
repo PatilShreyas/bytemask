@@ -144,7 +144,7 @@ class BytemaskPlugin : Plugin<Project> {
                 .getByType(CommonExtension::class.java)
                 .signingConfigs
                 .findByName(keySource.name)
-        return VariantSigningKeyInfoProvider(signingConfig, variant.name).getSha256()
+        return VariantSigningKeyProvider(signingConfig, variant.name).get()
     }
 
     companion object {

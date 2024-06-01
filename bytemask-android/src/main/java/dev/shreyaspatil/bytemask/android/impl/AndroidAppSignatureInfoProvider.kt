@@ -20,7 +20,7 @@ import android.content.pm.PackageManager
 import android.content.pm.Signature
 import android.os.Build
 import androidx.annotation.RequiresApi
-import dev.shreyaspatil.bytemask.core.AppSigningKeyInfoProvider
+import dev.shreyaspatil.bytemask.core.EncryptionKeyProvider
 import dev.shreyaspatil.bytemask.core.encryption.Sha256DigestableKey
 import java.security.MessageDigest
 
@@ -31,17 +31,19 @@ import java.security.MessageDigest
  *
  * @property context The application context.
  */
-internal class AndroidAppSigningKeyInfoProvider(private val context: Context) :
-    AppSigningKeyInfoProvider {
+internal class AndroidAppSigningSha256AsEncryptionKeyProvider(
+    private val context: Context
+) : EncryptionKeyProvider {
 
     private val sha256 =
         Sha256DigestableKey(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    getSha256SignatureApi28Impl()
-                } else {
-                    getSha256SignaturePreApi28Impl()
-                }
-                .uppercase())
+                getSha256SignatureApi28Impl()
+            } else {
+                getSha256SignaturePreApi28Impl()
+            }
+                .uppercase()
+        )
 
     /**
      * Returns the SHA-256 digest of the app's signing key.
@@ -52,7 +54,7 @@ internal class AndroidAppSigningKeyInfoProvider(private val context: Context) :
      *
      * @return The SHA-256 digest of the app's signing key as a Sha256DigestableKey.
      */
-    override fun getSha256(): Sha256DigestableKey {
+    override fun get(): Sha256DigestableKey {
         return sha256
     }
 
@@ -65,7 +67,8 @@ internal class AndroidAppSigningKeyInfoProvider(private val context: Context) :
     private fun getSha256SignaturePreApi28Impl(): String {
         val packageInfo =
             context.packageManager.getPackageInfo(
-                context.packageName, PackageManager.GET_SIGNATURES)
+                context.packageName, PackageManager.GET_SIGNATURES
+            )
         val signatures = packageInfo.signatures
         return retrieveSha256(signatures)
     }
@@ -81,7 +84,8 @@ internal class AndroidAppSigningKeyInfoProvider(private val context: Context) :
     private fun getSha256SignatureApi28Impl(): String {
         val packageInfo =
             context.packageManager.getPackageInfo(
-                context.packageName, PackageManager.GET_SIGNING_CERTIFICATES)
+                context.packageName, PackageManager.GET_SIGNING_CERTIFICATES
+            )
         val signatures = packageInfo.signingInfo.apkContentsSigners
         return retrieveSha256(signatures)
     }

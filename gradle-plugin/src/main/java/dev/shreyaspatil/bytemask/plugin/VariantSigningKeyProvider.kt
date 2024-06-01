@@ -16,20 +16,20 @@
 package dev.shreyaspatil.bytemask.plugin
 
 import com.android.build.api.dsl.ApkSigningConfig
-import dev.shreyaspatil.bytemask.core.AppSigningKeyInfoProvider
+import dev.shreyaspatil.bytemask.core.EncryptionKeyProvider
 import dev.shreyaspatil.bytemask.core.encryption.Sha256DigestableKey
 import java.security.KeyStore
 import java.security.MessageDigest
 import java.security.cert.Certificate
 import java.security.cert.X509Certificate
 
-/** Provides [AppSigningKeyInfoProvider] for a variant. */
-class VariantSigningKeyInfoProvider(
+/** Provides [EncryptionKeyProvider] for a variant. */
+class VariantSigningKeyProvider(
     private val config: ApkSigningConfig?,
     private val variantName: String,
-) : AppSigningKeyInfoProvider {
+) : EncryptionKeyProvider {
 
-    override fun getSha256(): Sha256DigestableKey {
+    override fun get(): Sha256DigestableKey {
         checkNotNull(config) { errorMessage("Signing config not found for variant") }
         checkNotNull(config.storeFile) { errorMessage("Keystore file not found") }
         checkNotNull(config.storePassword) { errorMessage("Keystore password not found") }

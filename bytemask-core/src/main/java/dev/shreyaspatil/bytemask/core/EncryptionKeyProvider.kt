@@ -18,7 +18,7 @@ package dev.shreyaspatil.bytemask.core
 import dev.shreyaspatil.bytemask.core.encryption.Sha256DigestableKey
 
 /** Provides information about the App Signing Key. */
-interface AppSigningKeyInfoProvider {
+interface EncryptionKeyProvider {
     /** Returns the SHA-256 from the app signing information. */
-    fun getSha256(): Sha256DigestableKey
+    fun get(): Sha256DigestableKey
 }
