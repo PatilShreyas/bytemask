@@ -25,9 +25,9 @@ import dev.shreyaspatil.bytemask.core.encryption.encrypt
  * ByteMask is a class that provides functionality for masking and unmasking strings. It uses an
  * [EncryptionKeyProvider] to get the key for encryption and decryption.
  *
- * @property appSignatureProvider used to get the key for encryption and decryption.
+ * @property encryptionKeyProvider used to get the key for encryption and decryption.
  */
-class Bytemask private constructor(private val appSignatureProvider: EncryptionKeyProvider) {
+class Bytemask private constructor(private val encryptionKeyProvider: EncryptionKeyProvider) {
 
     /**
      * Masks a string by encrypting it.
@@ -39,7 +39,7 @@ class Bytemask private constructor(private val appSignatureProvider: EncryptionK
     fun mask(encryptionSpec: EncryptionSpec, value: String): String {
         return value
             .asPlainValue()
-            .encrypt(detail = encryptionSpec, key = appSignatureProvider.get())
+            .encrypt(detail = encryptionSpec, key = encryptionKeyProvider.get())
             .value
     }
 
@@ -53,7 +53,7 @@ class Bytemask private constructor(private val appSignatureProvider: EncryptionK
     fun unmask(encryptionSpec: EncryptionSpec, value: String): String {
         return value
             .asEncryptedValue()
-            .decrypt(detail = encryptionSpec, key = appSignatureProvider.get())
+            .decrypt(detail = encryptionSpec, key = encryptionKeyProvider.get())
             .value
     }
 
@@ -63,15 +63,15 @@ class Bytemask private constructor(private val appSignatureProvider: EncryptionK
         /**
          * Initializes the ByteMask.
          *
-         * @param signatureProvider An instance of [EncryptionKeyProvider] used to get the key for
-         *   encryption and decryption.
+         * @param encryptionKeyProvider An instance of [EncryptionKeyProvider] used to get the key
+         *   for encryption and decryption.
          */
-        fun init(signatureProvider: EncryptionKeyProvider) {
+        fun init(encryptionKeyProvider: EncryptionKeyProvider) {
             if (INSTANCE != null) return
 
             synchronized(this) {
                 if (INSTANCE == null) {
-                    val byteMask = Bytemask(appSignatureProvider = signatureProvider)
+                    val byteMask = Bytemask(encryptionKeyProvider = encryptionKeyProvider)
                     INSTANCE = byteMask
                 }
             }
