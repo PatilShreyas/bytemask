@@ -1,4 +1,4 @@
-# Android Customization
+# App Runtime Customization
 
 ## Initialization
 
