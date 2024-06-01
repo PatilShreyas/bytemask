@@ -101,7 +101,8 @@ abstract class BytemaskCodegenTask : DefaultTask() {
                 applicationId = applicationId.get(),
                 className = className.get(),
                 outputDir = outputDir,
-                encryptionDetail = encryptionDetail)
+                encryptionDetail = encryptionDetail
+            )
 
         val generatedFile = codegen.generate()
 
@@ -115,7 +116,9 @@ abstract class BytemaskCodegenTask : DefaultTask() {
             }
 
             ConfigClassGenerator.EncryptionDetail(
-                encryptionSpec = encryptionSpec.get(), encryptionKey = encryptionKey.get())
+                encryptionSpec = encryptionSpec.get(),
+                encryptionKey = encryptionKey.get()
+            )
         } else {
             null
         }

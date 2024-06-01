@@ -41,8 +41,9 @@ class VariantSigningKeyProvider(
 
         val entry: KeyStore.PrivateKeyEntry =
             ks.getEntry(
-                config.keyAlias, KeyStore.PasswordProtection(config.keyPassword?.toCharArray()))
-                as KeyStore.PrivateKeyEntry
+                config.keyAlias,
+                KeyStore.PasswordProtection(config.keyPassword?.toCharArray())
+            ) as KeyStore.PrivateKeyEntry
 
         val certificate = entry.certificate as X509Certificate
         return Sha256DigestableKey(getFingerprint(certificate, "SHA-256"))

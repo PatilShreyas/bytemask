@@ -46,7 +46,8 @@ internal class ConfigClassGenerator(
             |$helperMethods
             |}
             """
-                    .trimMargin())
+                    .trimMargin()
+            )
         }
     }
 
@@ -79,7 +80,8 @@ internal class ConfigClassGenerator(
             |       dev.shreyaspatil.bytemask.core.Bytemask.getInstance().unmask(encryptionSpec, String(bytes))
             |   }
             """
-                .trimMargin())
+                .trimMargin()
+        )
     }
 
     /**
@@ -110,7 +112,8 @@ internal class ConfigClassGenerator(
                         |   @get:JvmName("${property.camelCase()}")
                         |   ${propertyDeclaration(property, value)}
                         """
-                    .trimMargin())
+                    .trimMargin()
+            )
         }
     }
 

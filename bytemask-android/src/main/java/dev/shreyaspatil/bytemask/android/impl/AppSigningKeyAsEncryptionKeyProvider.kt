@@ -41,7 +41,8 @@ internal class AppSigningKeyAsEncryptionKeyProvider(private val context: Context
                 } else {
                     getSha256SignaturePreApi28Impl()
                 }
-                .uppercase())
+                .uppercase()
+        )
 
     /**
      * Returns the SHA-256 digest of the app's signing key.
@@ -65,7 +66,9 @@ internal class AppSigningKeyAsEncryptionKeyProvider(private val context: Context
     private fun getSha256SignaturePreApi28Impl(): String {
         val packageInfo =
             context.packageManager.getPackageInfo(
-                context.packageName, PackageManager.GET_SIGNATURES)
+                context.packageName,
+                PackageManager.GET_SIGNATURES
+            )
         val signatures = packageInfo.signatures
         return retrieveSha256(signatures)
     }
@@ -81,7 +84,9 @@ internal class AppSigningKeyAsEncryptionKeyProvider(private val context: Context
     private fun getSha256SignatureApi28Impl(): String {
         val packageInfo =
             context.packageManager.getPackageInfo(
-                context.packageName, PackageManager.GET_SIGNING_CERTIFICATES)
+                context.packageName,
+                PackageManager.GET_SIGNING_CERTIFICATES
+            )
         val signatures = packageInfo.signingInfo.apkContentsSigners
         return retrieveSha256(signatures)
     }

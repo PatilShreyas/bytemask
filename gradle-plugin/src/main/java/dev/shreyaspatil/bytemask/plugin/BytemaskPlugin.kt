@@ -26,7 +26,6 @@ import dev.shreyaspatil.bytemask.plugin.config.BytemaskConfig
 import dev.shreyaspatil.bytemask.plugin.config.KeySource
 import dev.shreyaspatil.bytemask.plugin.task.BytemaskCodegenTask
 import dev.shreyaspatil.bytemask.plugin.util.capitalized
-import dev.shreyaspatil.bytemask.plugin.util.removeSpecialChars
 import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -56,13 +55,16 @@ class BytemaskPlugin : Plugin<Project> {
             if (!pluginApplied) {
                 project.logger.error(
                     "The bytemask Gradle plugin needs to be applied on a project with either:" +
-                        "com.android.application, com.android.dynamic-feature, com.android.library")
+                        "com.android.application, com.android.dynamic-feature, com.android.library"
+                )
             }
         }
 
         // Add the module dependencies
         target.dependencies.add(
-            "implementation", "dev.shreyaspatil.bytemask:bytemask-android:${PluginConfig.VERSION}")
+            "implementation",
+            "dev.shreyaspatil.bytemask:bytemask-android:${PluginConfig.VERSION}"
+        )
     }
 
     private fun <T> handleVariant(variant: T, project: Project, config: BytemaskConfig) where
@@ -70,40 +72,49 @@ class BytemaskPlugin : Plugin<Project> {
     T : GeneratesApk {
         val codegenTask =
             project.tasks.register(
-                "bytemask${variant.name.capitalized()}", BytemaskCodegenTask::class.java) {
-                    val propertyFileName = config.defaultPropertiesFileName.get()
+                "bytemask${variant.name.capitalized()}",
+                BytemaskCodegenTask::class.java
+            ) {
+                val propertyFileName = config.defaultPropertiesFileName.get()
 
-                    bytemaskPropFiles.set(
-                        getBytemaskPropertyFiles(
-                            propertyFileName = propertyFileName,
-                            buildType = variant.buildType.orEmpty(),
-                            flavorNames = variant.productFlavors.map { it.second },
-                            root = project.projectDir))
-                    applicationId.set(variant.applicationId)
-                    className.set(config.className)
+                bytemaskPropFiles.set(
+                    getBytemaskPropertyFiles(
+                        propertyFileName = propertyFileName,
+                        buildType = variant.buildType.orEmpty(),
+                        flavorNames = variant.productFlavors.map { it.second },
+                        root = project.projectDir
+                    )
+                )
+                applicationId.set(variant.applicationId)
+                className.set(config.className)
 
-                    val task = this
-                    val configForVariant = config.findConfigForVariant(variant.name)
-                    if (configForVariant != null) {
-                        task.enableEncryption.set(configForVariant.enableEncryption.get())
-                        task.encryptionSpec.set(configForVariant.encryptionSpec.get())
-                        if (configForVariant.enableEncryption.get()) {
-                            val keySource = configForVariant.encryptionKeySource.orNull
-                            val encryptionKey =
-                                getEncryptionKey(
-                                    keySource = keySource, project = project, variant = variant)
-                            task.encryptionKey.set(encryptionKey)
-                        }
-                    } else {
-                        // Set default encryption spec
-                        task.enableEncryption.set(false)
-                        task.encryptionSpec.set(
-                            EncryptionSpec(
-                                algorithm = "AES", transformation = "AES/CBC/PKCS5Padding"))
+                val task = this
+                val configForVariant = config.findConfigForVariant(variant.name)
+                if (configForVariant != null) {
+                    task.enableEncryption.set(configForVariant.enableEncryption.get())
+                    task.encryptionSpec.set(configForVariant.encryptionSpec.get())
+                    if (configForVariant.enableEncryption.get()) {
+                        val keySource = configForVariant.encryptionKeySource.orNull
+                        val encryptionKey =
+                            getEncryptionKey(
+                                keySource = keySource,
+                                project = project,
+                                variant = variant
+                            )
+                        task.encryptionKey.set(encryptionKey)
                     }
+                } else {
+                    // Set default encryption spec
+                    task.enableEncryption.set(false)
+                    task.encryptionSpec.set(
+                        EncryptionSpec(algorithm = "AES", transformation = "AES/CBC/PKCS5Padding")
+                    )
                 }
+            }
         variant.sources.java?.addGeneratedSourceDirectory(
-            codegenTask, BytemaskCodegenTask::outputDirectory)
+            taskProvider = codegenTask,
+            wiredWith = BytemaskCodegenTask::outputDirectory
+        )
     }
 
     private fun <T> getEncryptionKey(keySource: KeySource?, project: Project, variant: T) where
@@ -112,8 +123,7 @@ class BytemaskPlugin : Plugin<Project> {
             is KeySource.SigningConfig -> {
                 getAppSigningKeyForVariant(project, keySource, variant)
             }
-            is KeySource.Key ->
-                Sha256DigestableKey(keySource.encryptionKey)
+            is KeySource.Key -> Sha256DigestableKey(keySource.encryptionKey)
             else ->
                 getAppSigningKeyForVariant(project, KeySource.SigningConfig(variant.name), variant)
         }

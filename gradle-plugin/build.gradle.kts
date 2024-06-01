@@ -48,7 +48,8 @@ val generateVersionClassTask =
             val file =
                 File(
                     project.projectDir,
-                    "build/generated/src/main/kotlin/dev/shreyaspatil/bytemask/plugin/Version.kt")
+                    "build/generated/src/main/kotlin/dev/shreyaspatil/bytemask/plugin/Version.kt"
+                )
             file.parentFile.mkdirs()
             file.writeText(
                 """
@@ -58,7 +59,8 @@ val generateVersionClassTask =
                 const val VERSION = "$version"
             }
             """
-                    .trimIndent())
+                    .trimIndent()
+            )
         }
     }
 
