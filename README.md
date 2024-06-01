@@ -5,6 +5,8 @@ A Gradle plugin for storing secrets in a secure way in your Android apps.
 [![Build](https://github.com/PatilShreyas/Bytemask/actions/workflows/build.yml/badge.svg)](https://github.com/PatilShreyas/Bytemask/actions/workflows/build.yml)
 [![Release](https://github.com/PatilShreyas/Bytemask/actions/workflows/release.yml/badge.svg)](https://github.com/PatilShreyas/Bytemask/actions/workflows/release.yml)
 
+[***▶️ Read the documentation***](https://patilshreyas.github.io/bytemask) for more information and guide to use this utility
+
 ## 🙋‍♂️ Contribute
 
 Read [contribution guidelines](CONTRIBUTING.md) for more information regarding contribution.
