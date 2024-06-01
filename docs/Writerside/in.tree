@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="in"
+                 name="Bytemask - Android Gradle Plugin"
+                 start-page="Introduction.md">
+
+    <toc-element topic="Introduction.md"/>
+    <toc-element topic="Getting-Started.md"/>
+    <toc-element topic="Configure.md"/>
+    <toc-element topic="Declaring-properties.md"/>
+    <toc-element topic="Read-configuration.md"/>
+    <toc-element topic="Android-Customization.md"/>
+</instance-profile>

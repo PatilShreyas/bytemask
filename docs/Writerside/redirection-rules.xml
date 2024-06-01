@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="113781da">
+        <description>Created after removal of "Overview" from Bytemask - Android Gradle Plugin</description>
+        <accepts>Overview.html</accepts>
+    </rule>
+    <rule id="6b2dcc15">
+        <description>Created after removal of "Tutorial" from Bytemask - Android Gradle Plugin</description>
+        <accepts>Tutorial.html</accepts>
+    </rule>
+    <rule id="6b305a9">
+        <description>Created after removal of "Android app" from Bytemask - Android Gradle Plugin</description>
+        <accepts>Android-app.html</accepts>
+    </rule>
+</rules>
