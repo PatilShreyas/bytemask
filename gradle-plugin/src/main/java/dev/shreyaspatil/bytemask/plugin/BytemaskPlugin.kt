@@ -19,8 +19,6 @@ import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.api.variant.DynamicFeatureAndroidComponentsExtension
 import com.android.build.api.variant.GeneratesApk
-import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import com.android.build.api.variant.LibraryVariant
 import com.android.build.api.variant.Variant
 import dev.shreyaspatil.bytemask.core.encryption.EncryptionSpec
 import dev.shreyaspatil.bytemask.core.encryption.Sha256DigestableKey
@@ -54,13 +52,6 @@ class BytemaskPlugin : Plugin<Project> {
             }
         }
 
-        target.pluginManager.withPlugin("com.android.library") {
-            pluginApplied = true
-            target.extensions.configure(LibraryAndroidComponentsExtension::class.java) {
-                onVariants { variant -> handleVariant(variant, target, config) }
-            }
-        }
-
         target.afterEvaluate {
             if (!pluginApplied) {
                 project.logger.error(
@@ -75,7 +66,8 @@ class BytemaskPlugin : Plugin<Project> {
     }
 
     private fun <T> handleVariant(variant: T, project: Project, config: BytemaskConfig) where
-    T : Variant {
+    T : Variant,
+    T : GeneratesApk {
         val codegenTask =
             project.tasks.register(
                 "bytemask${variant.name.capitalized()}", BytemaskCodegenTask::class.java) {
@@ -87,7 +79,7 @@ class BytemaskPlugin : Plugin<Project> {
                             buildType = variant.buildType.orEmpty(),
                             flavorNames = variant.productFlavors.map { it.second },
                             root = project.projectDir))
-                    applicationId.set(getApplicationId(variant))
+                    applicationId.set(variant.applicationId)
                     className.set(config.className)
 
                     val task = this
@@ -113,13 +105,6 @@ class BytemaskPlugin : Plugin<Project> {
         variant.sources.java?.addGeneratedSourceDirectory(
             codegenTask, BytemaskCodegenTask::outputDirectory)
     }
-
-    private fun <T> getApplicationId(variant: T) where T : Variant =
-        when (variant) {
-            is GeneratesApk -> variant.applicationId
-            is LibraryVariant -> variant.namespace
-            else -> error("Unknown variant type: $variant")
-        }
 
     private fun <T> getEncryptionKey(keySource: KeySource?, project: Project, variant: T) where
     T : Variant =
