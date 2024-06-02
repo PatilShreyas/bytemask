@@ -14,10 +14,10 @@ The plugin is customizable. The default implementation of plugin encrypts string
 At runtime, the app retrieves values from the configuration class. These values are decrypted using the SHA-256 hash 
 of the app's signing certificate. This hash is fetched in the runtime using the `PackageManager` API in Android.
 
-> This security measure helps prevent tampering. If someone tries to reverse engineer the app and rebuild it with 
-> their own code (_and a different signing key_), the app will crash at runtime. This is because the configuration keys 
-> are **encrypted using the app's original signing key**, and an **invalid key in the modified APK** will be a cause
-> to fail the decryption.
+> This security measure helps in the scenario of app tampering. If someone tries to reverse engineer the app and rebuild 
+> it with their own code (_and with a different signing key_), the app will crash at runtime. This is because the 
+> configuration keys are **encrypted using the app's original signing key**, and an **invalid key in the modified APK** 
+> will be a cause to fail the decryption.
 
 See the flow for better understanding:
 
