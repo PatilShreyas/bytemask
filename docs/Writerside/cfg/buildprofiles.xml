@@ -20,5 +20,8 @@
 
     <footer>
         <link href="https://github.com/PatilShreyas/bytemask">View On GitHub</link>
+        <link href="https://github.com/PatilShreyas/bytemask/discussions">Discuss</link>
+        <link href="https://github.com/PatilShreyas/bytemask/issues">Create issue</link>
+        <link href="https://github.com/PatilShreyas/bytemask/blob/main/CONTRIBUTING.md">Contribute</link>
     </footer>
 </buildprofiles>
