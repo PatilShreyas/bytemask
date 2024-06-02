@@ -52,7 +52,7 @@ bytemaskConfig {
 }
 ```
 
-### Provide encryption key directly without depending on signing config info
+### Provide a custom encryption key directly without depending on signing config info
 
 ```Kotlin
 bytemaskConfig {
@@ -70,17 +70,6 @@ bytemaskConfig {
     // ...
     configure("release") {
         encryptionSpec.set(EncryptionSpec(algorithm = "AES", transformation = "AES/GCM/NoPadding"))
-    }
-}
-```
-
-### Providing custom encryption key
-
-```Kotlin
-bytemaskConfig {
-    // ...
-    configure("release") {
-        encryptionKeySource.set(KeySource.Key("encryption_key_here"))
     }
 }
 ```
