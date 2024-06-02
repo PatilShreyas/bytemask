@@ -14,10 +14,17 @@ API_KEY=Hello1234
 
 In code, you can access it like
 
-```Kotlin
+<tabs>
+<code-block lang="kotlin">
 fun example() {
     val apiKey = BytemaskConfig.API_KEY
 }
-```
+</code-block>
+<code-block lang="java">
+void example() {
+    String apiKey = BytemaskConfig.apiKey()
+}
+</code-block>
+</tabs>
 
 ![](ConfigAndGeneratedCode.png)
