@@ -32,7 +32,7 @@ See image here (**Left:** Property declarations, **Right:** Generated class):
 
 ![Configuration and Generated Code](ConfigAndGeneratedCode.png)
 
-### How does it look after reverse engineering on `obfuscated` APK?
+### How does it look after reverse engineering on obfuscated APK?
 
 If you build a release APK with R8 obfuscation and optimizations enabled, this is how code looks like which makes it
 difficult to understand.
