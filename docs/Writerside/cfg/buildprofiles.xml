@@ -8,6 +8,8 @@
         <showDownloadButton>true</showDownloadButton>
         <enable-browser-edits>true</enable-browser-edits>
         <browser-edits-url>https://github.com/PatilShreyas/bytemask/tree/main/docs/Writerside/</browser-edits-url>
+        <og-image>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/cover.png</og-image>
+        <og-twitter>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/cover.png</og-twitter>
     </variables>
 
     <build-profile instance="in">
