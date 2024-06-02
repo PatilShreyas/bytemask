@@ -5,8 +5,13 @@
     <variables></variables>
     <build-profile instance="in">
         <variables>
-            <noindex-content>true</noindex-content>
+            <noindex-content>false</noindex-content>
         </variables>
     </build-profile>
 
+    <sitemap priority="0.35" change-frequency="monthly"/>
+
+    <footer>
+        <link href="https://github.com/PatilShreyas/bytemask">View On GitHub</link>
+    </footer>
 </buildprofiles>
