@@ -67,18 +67,30 @@ internal class ConfigClassGenerator(
 
         val (encryptionSpec, _) = encryptionDetail
 
+        // The reason for introducing separate function `buildString` here is because as a part of
+        // code optimization by R8, it converts bytes to String already in the code which exposes
+        // the string representation of the bytes because `String()` is an inline function in Kotlin
+        // SDK. So making a non-inline function here helps in preventing this exposure of encrypted
+        // strings.
         appendLine(
             """
-            |   private val encryptionSpec = dev.shreyaspatil.bytemask.core.encryption.EncryptionSpec(
-            |       // Encryption Algorithm: ${encryptionSpec.algorithm}
-            |       algorithm = ${encryptionSpec.algorithm.asByteArrayDeclaration()}.decodeToString(),
-            |       // Encryption Transformation: ${encryptionSpec.transformation}
-            |       transformation = ${encryptionSpec.transformation.asByteArrayDeclaration()}.decodeToString()
-            |   )
+            |   // Encryption Algorithm: ${encryptionSpec.algorithm}
+            |   private val _bytemaskEncryptionAlgorithm = ${encryptionSpec.algorithm.asByteArrayDeclaration()}
+            |   // Encryption Transformation: ${encryptionSpec.transformation}
+            |   private val _bytemaskEncryptionTransformation = ${encryptionSpec.transformation.asByteArrayDeclaration()}
+            |   
+            |   private val encryptionSpec by lazy { 
+            |       dev.shreyaspatil.bytemask.core.encryption.EncryptionSpec(
+            |           algorithm = buildString(_bytemaskEncryptionAlgorithm),
+            |           transformation = buildString(_bytemaskEncryptionTransformation)
+            |       )
+            |   }
             |   
             |   private fun unmask(bytes: ByteArray): Lazy<String> = lazy {
-            |       dev.shreyaspatil.bytemask.core.Bytemask.getInstance().unmask(encryptionSpec, String(bytes))
+            |       dev.shreyaspatil.bytemask.core.Bytemask.getInstance().unmask(encryptionSpec, buildString(bytes))
             |   }
+            |   
+            |   private fun buildString(bytes: ByteArray): String = java.lang.String(bytes, Charsets.UTF_8) as String
             """
                 .trimMargin()
         )
