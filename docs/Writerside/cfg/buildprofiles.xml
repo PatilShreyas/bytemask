@@ -8,17 +8,16 @@
         <showDownloadButton>true</showDownloadButton>
         <enable-browser-edits>true</enable-browser-edits>
         <browser-edits-url>https://github.com/PatilShreyas/bytemask/tree/main/docs/Writerside/</browser-edits-url>
-        <og-image>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/cover.png</og-image>
-        <og-twitter>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/cover.png</og-twitter>
     </variables>
 
     <build-profile instance="in">
         <variables>
             <noindex-content>false</noindex-content>
+            <og-image>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/cover.png</og-image>
+            <og-twitter>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/cover.png</og-twitter>
         </variables>
+        <sitemap priority="0.35" change-frequency="monthly"/>
     </build-profile>
-
-    <sitemap priority="0.35" change-frequency="monthly"/>
 
     <footer>
         <link href="https://github.com/PatilShreyas/bytemask">View On GitHub</link>
