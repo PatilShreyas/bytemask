@@ -1,3 +1,9 @@
+# ⚠️ Work in Progress ⚠️
+
+_The Gradle plugin is still in progress to get the approval from Gradle Plugin portal._ So you'll not be able to use this plugin as of now.
+
+---
+
 # Bytemask
 
 A Gradle plugin for storing secrets in a secure way in your Android apps.
