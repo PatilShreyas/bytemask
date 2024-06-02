@@ -9,8 +9,7 @@ from the [configuration](Configure.md "Configure custom file name and class name
 If properties file is like:
 
 ```Generic
-API_KEY=AIbuf34ug8o348ih
-SECRET=SUPERSECRET!
+API_KEY=Hello1234
 ```
 
 In code, you can access it like
@@ -18,6 +17,7 @@ In code, you can access it like
 ```Kotlin
 fun example() {
     val apiKey = BytemaskConfig.API_KEY
-    val secret = BytemaskConfig.SECRET
 }
 ```
+
+![](ConfigAndGeneratedCode.png)
