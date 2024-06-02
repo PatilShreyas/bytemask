@@ -8,6 +8,7 @@
         <showDownloadButton>true</showDownloadButton>
         <enable-browser-edits>true</enable-browser-edits>
         <browser-edits-url>https://github.com/PatilShreyas/bytemask/tree/main/docs/Writerside/</browser-edits-url>
+        <custom-favicons>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/icon.png</custom-favicons>
     </variables>
 
     <build-profile instance="in">
