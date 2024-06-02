@@ -34,11 +34,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions { jvmTarget = "1.8" }
-    buildFeatures {
-        viewBinding {
-            enable = true
-        }
-    }
+    buildFeatures { viewBinding { enable = true } }
     packaging { resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" } }
     signingConfigs { create("release") { initWith(getByName("debug")) } }
 }
@@ -54,17 +50,13 @@ dependencies {
 
 bytemaskConfig {
     // UNCOMMENT THIS: To set the generated class name as "MyAppConfig"
-//    className.set("MyAppConfig")
+    // className.set("MyAppConfig")
 
     // UNCOMMENT THIS: To pick secrets from the `secrets.properties`
-//    defaultPropertiesFileName.set("secrets.properties")
+    // defaultPropertiesFileName.set("secrets.properties")
 
     // For debug variant, enable encryption with a debug SHA-256 key.
-    configure("debug") {
-        enableEncryption.set(true)
-    }
+    configure("debug") { enableEncryption.set(true) }
 
-    configure("release") {
-        enableEncryption.set(true)
-    }
+    configure("release") { enableEncryption.set(true) }
 }
