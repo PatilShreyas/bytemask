@@ -2,11 +2,29 @@
 <buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <variables></variables>
+    <variables>
+        <download-page>https://github.com/PatilShreyas/bytemask</download-page>
+        <download-title>GitHub</download-title>
+        <showDownloadButton>true</showDownloadButton>
+        <enable-browser-edits>true</enable-browser-edits>
+        <browser-edits-url>https://github.com/PatilShreyas/bytemask/tree/main/docs/Writerside/</browser-edits-url>
+        <custom-favicons>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/icon.png</custom-favicons>
+        <header-logo>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/icon.png</header-logo>
+    </variables>
+
     <build-profile instance="in">
         <variables>
-            <noindex-content>true</noindex-content>
+            <noindex-content>false</noindex-content>
+            <og-image>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/cover.png</og-image>
+            <og-twitter>https://raw.githubusercontent.com/PatilShreyas/bytemask/main/cover.png</og-twitter>
         </variables>
+        <sitemap priority="0.35" change-frequency="monthly"/>
     </build-profile>
 
+    <footer>
+        <link href="https://github.com/PatilShreyas/bytemask">View On GitHub</link>
+        <link href="https://github.com/PatilShreyas/bytemask/discussions">Discuss</link>
+        <link href="https://github.com/PatilShreyas/bytemask/issues">Create issue</link>
+        <link href="https://github.com/PatilShreyas/bytemask/blob/main/CONTRIBUTING.md">Contribute</link>
+    </footer>
 </buildprofiles>
