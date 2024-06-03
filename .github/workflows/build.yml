@@ -14,6 +14,9 @@ jobs:
         with:
           java-version: 17
 
+      - name: Generate keystore
+        run: keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "C=US, O=Android, CN=Android Debug"
+
       - name: Grant Permission to Execute
         run: chmod +x gradlew
 
