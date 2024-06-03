@@ -36,7 +36,14 @@ android {
     kotlinOptions { jvmTarget = "1.8" }
     buildFeatures { viewBinding { enable = true } }
     packaging { resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" } }
-    signingConfigs { create("release") { initWith(getByName("debug")) } }
+    signingConfigs {
+        named("debug") {
+            storeFile = rootProject.file("debug.keystore")
+        }
+        create("release") {
+            initWith(getByName("debug"))
+        }
+    }
 }
 
 dependencies {
