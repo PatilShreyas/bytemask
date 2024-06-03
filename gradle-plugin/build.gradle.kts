@@ -27,15 +27,15 @@ dependencies {
 tasks.getByName<Test>("test") { useJUnitPlatform() }
 
 gradlePlugin {
-    website.set("https://github.com/PatilShreyas/bytemask-gradle-plugin")
-    vcsUrl.set("https://github.com/PatilShreyas/bytemask-gradle-plugin.git")
+    website.set("https://github.com/PatilShreyas/bytemask")
+    vcsUrl.set("https://github.com/PatilShreyas/bytemask.git")
     plugins {
         create("reportGenPlugin") {
             id = "dev.shreyaspatil.bytemask.plugin"
             displayName = POM_NAME
             description = POM_DESCRIPTION
             implementationClass = "dev.shreyaspatil.bytemask.plugin.BytemaskPlugin"
-            tags.set(listOf("android"))
+            tags.set(listOf("android", "kotlin", "security"))
         }
     }
 }
@@ -53,12 +53,12 @@ val generateVersionClassTask =
             file.parentFile.mkdirs()
             file.writeText(
                 """
-            package dev.shreyaspatil.bytemask.plugin
-            
-            object PluginConfig {
-                const val VERSION = "$version"
-            }
-            """
+                package dev.shreyaspatil.bytemask.plugin
+                
+                object PluginConfig {
+                    const val VERSION = "$version"
+                }
+                """
                     .trimIndent()
             )
         }
