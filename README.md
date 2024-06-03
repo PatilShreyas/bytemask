@@ -2,12 +2,11 @@
 
 A Gradle plugin for storing secrets in a secure way in your Android apps.
 
-[![Gradle Plugin](https://img.shields.io/gradle-plugin-portal/v/dev.shreyaspatil.bytemask.plugin?color=%233cafc6&label=Plugin&logo=gradle&style=flat-square)](https://plugins.gradle.org/plugin/dev.shreyaspatil.bytemask.plugin)
+[***▶️ Read the documentation***](https://patilshreyas.github.io/bytemask) for more information and guide to use this utility
 
+[![Gradle Plugin](https://img.shields.io/gradle-plugin-portal/v/dev.shreyaspatil.bytemask.plugin?color=%233cafc6&label=Plugin&logo=gradle&style=flat-square)](https://plugins.gradle.org/plugin/dev.shreyaspatil.bytemask.plugin)
 [![Build](https://github.com/PatilShreyas/Bytemask/actions/workflows/build.yml/badge.svg)](https://github.com/PatilShreyas/Bytemask/actions/workflows/build.yml)
 [![Release](https://github.com/PatilShreyas/Bytemask/actions/workflows/release.yml/badge.svg)](https://github.com/PatilShreyas/Bytemask/actions/workflows/release.yml)
-
-[***▶️ Read the documentation***](https://patilshreyas.github.io/bytemask) for more information and guide to use this utility
 
 ## 🙋‍♂️ Contribute
 
