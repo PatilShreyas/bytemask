@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Secrets will appear here"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonApiKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Show API Key" />
+
+    <Button
+        android:id="@+id/buttonAccessToken"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Access Token" />
+
+    <Button
+        android:id="@+id/buttonApiEndpoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show API Endpoint" />
+</LinearLayout>
