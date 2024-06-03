@@ -14,15 +14,10 @@ jobs:
         with:
           java-version: 17
 
-      - name: Generate keystore
-        run: |
-          keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "C=US, O=Android, CN=Android Debug"
-          mv -p debug.keystore /home/runner/.config/.android/debug.keystore
-
       - name: Grant Permission to Execute
         run: chmod +x gradlew
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: build
+          arguments: signingReport build
