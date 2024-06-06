@@ -1,6 +1,6 @@
 # Bytemask
 
-A Gradle plugin for storing secrets in a secure way in your Android apps.
+Android Gradle Plugin that masks your **secret strings** for the app in the source code making it difficult to extract from _reverse engineering_.
 
 [***▶️ Read the documentation***](https://patilshreyas.github.io/bytemask) for more information and guide to use this utility
 
