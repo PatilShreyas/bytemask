@@ -85,7 +85,7 @@ class BytemaskPlugin : Plugin<Project> {
                         root = project.projectDir
                     )
                 )
-                applicationId.set(variant.applicationId)
+                applicationNamespace.set(variant.namespace)
                 className.set(config.className)
 
                 val task = this
