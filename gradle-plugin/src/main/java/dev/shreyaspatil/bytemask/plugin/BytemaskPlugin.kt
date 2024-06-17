@@ -26,9 +26,10 @@ import dev.shreyaspatil.bytemask.plugin.config.BytemaskConfig
 import dev.shreyaspatil.bytemask.plugin.config.KeySource
 import dev.shreyaspatil.bytemask.plugin.task.BytemaskCodegenTask
 import dev.shreyaspatil.bytemask.plugin.util.capitalized
-import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.provider.Provider
+import java.io.File
 
 /** Bytemask Gradle Plugin. Applies on Android projects. Entry point of the plugin. */
 class BytemaskPlugin : Plugin<Project> {
@@ -117,16 +118,29 @@ class BytemaskPlugin : Plugin<Project> {
         )
     }
 
-    private fun <T> getEncryptionKey(keySource: KeySource?, project: Project, variant: T) where
-    T : Variant =
+    private fun <T> getEncryptionKey(
+        keySource: KeySource?,
+        project: Project,
+        variant: T
+    ): Provider<Sha256DigestableKey?> where T : Variant = project.provider {
         when (keySource) {
-            is KeySource.SigningConfig -> {
-                getAppSigningKeyForVariant(project, keySource, variant)
-            }
-            is KeySource.Key -> Sha256DigestableKey(keySource.encryptionKey)
-            else ->
-                getAppSigningKeyForVariant(project, KeySource.SigningConfig(variant.name), variant)
+            is KeySource.SigningConfig -> getAppSigningKeyForVariant(
+                project = project,
+                keySource = keySource,
+                variant = variant
+            )
+
+            is KeySource.Key -> Sha256DigestableKey(
+                value = keySource.encryptionKey
+            )
+
+            null -> getAppSigningKeyForVariant(
+                project = project,
+                keySource = KeySource.SigningConfig(variant.name),
+                variant = variant
+            )
         }
+    }
 
     /** Returns the signing key for the variant. It will be used as an encryption key. */
     private fun <T> getAppSigningKeyForVariant(
