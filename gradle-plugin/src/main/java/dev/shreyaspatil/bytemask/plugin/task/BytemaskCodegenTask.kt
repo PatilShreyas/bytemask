@@ -44,8 +44,8 @@ abstract class BytemaskCodegenTask : DefaultTask() {
     @get:InputFiles
     abstract val bytemaskPropFiles: Property<Collection<File>>
 
-    /** Application ID of the Android application. (e.g. com.example.app) */
-    @get:Input abstract val applicationId: Property<String>
+    /** Namespace of application / dynamic feature module. (e.g. com.example.app) */
+    @get:Input abstract val applicationNamespace: Property<String>
 
     /** Class name of the generated class. (e.g. AppConfig). Default is `BytemaskConfig`. */
     @get:Input abstract val className: Property<String>
@@ -98,7 +98,7 @@ abstract class BytemaskCodegenTask : DefaultTask() {
         val codegen =
             ConfigClassGenerator(
                 propertyAndValuesProvider = PropertyAndValuesProvider(propFiles),
-                applicationId = applicationId.get(),
+                applicationNamespace = applicationNamespace.get(),
                 className = className.get(),
                 outputDir = outputDir,
                 encryptionDetail = encryptionDetail
