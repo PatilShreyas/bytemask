@@ -12,4 +12,6 @@
     <toc-element topic="Declaring-properties.md"/>
     <toc-element topic="Read-configuration.md"/>
     <toc-element topic="Android-Customization.md"/>
+    <toc-element toc-title="Releases"
+                 target-for-accept-web-file-names="https://github.com/PatilShreyas/bytemask/releases"/>
 </instance-profile>
