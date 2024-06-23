@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("dev.shreyaspatil.bytemask.plugin") version "1.0.0-alpha01"
+    id("dev.shreyaspatil.bytemask.plugin") version "1.0.0-alpha02"
 }
 
 android {
