@@ -17,7 +17,7 @@ Apply the plugin in the app module.
 
 ```Kotlin
 plugins {
-    id("dev.shreyaspatil.bytemask.plugin") version "1.0.0-alpha01"
+    id("dev.shreyaspatil.bytemask.plugin") version "1.0.0-alpha02"
 }
 ```
 
@@ -31,7 +31,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath("dev.shreyaspatil.bytemask:gradle-plugin:1.0.0-alpha01")
+    classpath("dev.shreyaspatil.bytemask:gradle-plugin:1.0.0-alpha02")
   }
 }
 

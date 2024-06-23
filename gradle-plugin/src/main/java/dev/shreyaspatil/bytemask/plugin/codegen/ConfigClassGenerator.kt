@@ -25,7 +25,7 @@ import java.io.File
 
 /** Generates a Kotlin class file with properties and values. */
 internal class ConfigClassGenerator(
-    private val applicationId: String,
+    private val applicationNamespace: String,
     private val className: String,
     private val propertyAndValuesProvider: PropertyAndValuesProvider,
     private val outputDir: File,
@@ -39,7 +39,7 @@ internal class ConfigClassGenerator(
         return createClassKtFile(className).also {
             it.writeText(
                 """
-            |package $applicationId
+            |package $applicationNamespace
             |
             |object $className {
             |$declarationProperties    
@@ -57,7 +57,7 @@ internal class ConfigClassGenerator(
      * @param className Name of the class.
      */
     private fun createClassKtFile(className: String) =
-        applicationId
+        applicationNamespace
             .replace(".", "/")
             .let { packagePath -> outputDir.resolve(packagePath).also { it.mkdirs() } }
             .resolve("$className.kt")
