@@ -149,7 +149,7 @@ internal class ConfigClassGenerator(
                 .trimIndent()
         } else {
             """
-            |   val $property by lazy { "$value" }
+            |   val $property by lazy { "${value.replace("$", "\\$")}" }
             """
                 .trimIndent()
         }
